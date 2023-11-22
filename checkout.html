@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - Loja de Bicicletas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/cart-styles.css">
+    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Página Inicial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cliente.html">Área do Cliente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contatos</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="cart-icon">
+                <a href="#">
+                    <i class="fa fa-shopping-cart fa-2x"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <section class="checkout-form">
+            <!-- Formulário de checkout -->
+            <form action="processar_compra.php" method="POST" onsubmit="return validarForm()">
+                <h2>Finalizar Compra</h2>
+                <!-- Campos de informações do cliente -->
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço de Entrega:</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" required>
+                </div>
+                <!-- adicionar area para colocar dados do cartão -->
+                <div class="card-details">
+                    <h3>Informações do Cartão</h3>
+                    <div class="form-group">
+                        <label for="numero-cartao">Número do Cartão:</label>
+                        <input type="text" class="form-control" id="numero-cartao" name="numero-cartao" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome-cartao">Nome no Cartão:</label>
+                        <input type="text" class="form-control" id="nome-cartao" name="nome-cartao" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="data-validade">Data de Validade:</label>
+                            <input type="text" class="form-control" id="data-validade" name="data-validade" placeholder="MM/AA" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" class="form-control" id="cvv" name="cvv" required>
+                        </div>
+                    </div>
+                    <!-- Adicionar regex do cartão -->
+                </div>
+                <!-- Seção para exibir produtos selecionados -->
+                <div class="selected-products">
+                    <h3>Produtos Selecionados:</h3>
+                    <!-- criar area para exibir os produtos -->
+                </div>
+
+                <!-- Botão de compra -->
+                <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+            </form>
+        </section>
+    </main>
+
+
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <!-- Rodapé -->
+        <p>© 2023 Loja de Bicicletas</p>
+    </footer>
+    
+    <script src="caminho_para_seu_script_de_validacao.js"></script>
+    <!-- script dos produtos do carrinho -->
+</body>
+
+</html>

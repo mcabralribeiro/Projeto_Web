@@ -1,0 +1,22 @@
+/* cart-style.css */
+.cart-icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.cart-icon a {
+    text-decoration: none;
+    color: black;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+}

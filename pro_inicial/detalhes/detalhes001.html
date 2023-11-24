@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/cart-styles.css">
-    
+    <link rel="stylesheet" href="../css/cart-styles.css">
+
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                     <i class="fa fa-shopping-cart fa-2x"></i>
                     <span id="cart-count" class="cart-count">0</span>
                 </a>
-            </div>            
+            </div>
         </nav>
     </header>
 
@@ -53,28 +53,204 @@
                 <div class="col-md-6">
                     <img src="../imagens/71jjmLY5WtL._AC_SX425_.jpg" class="img-fluid" alt="Produto 1">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id=1 value="759" name="Bicicleta Caloi Aro 29 Caloi Velox MY23">
                     <h2>Bicicleta Caloi Aro 29 Caloi Velox MY23</h2>
-                    <p>A Bicicleta Caloi, modelo Velox V-Brake, é fabricada em alumínio, com aro 29 e 21 marchas. O produto na cor preta, pertence a modalidade Mountain Bike e suporta até 100 Kg.</p>
+                    <p>A Bicicleta Caloi, modelo Velox V-Brake, é fabricada em alumínio, com aro 29 e 21 marchas. O
+                        produto na cor preta, pertence a modalidade Mountain Bike e suporta até 100 Kg.</p>
                     <p>Preço: R$ 759,90</p>
                     <!-- Adicione opções de compra, como botões para adicionar ao carrinho ou comprar agora -->
-                    <a href="#" onclick="adicionarAoCarrinho()" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    <a href="../checkout.html" class="btn btn-success">Comprar Agora</a>
+                    <a href="#" class="btn btn-primary" data-price="759.90" class="btn btn-primary">Adicionar ao
+                        Carrinho</a>
+                    <a href="#" class="btn btn-success">Comprar Agora</a>
                     <!-- Adicione avaliações, opções de compartilhamento, informações técnicas, etc. -->
                 </div>
             </div>
         </section>
+        <!-- Modal Carrinho -->
+        <div class="modal fade" id="carrinhoModal" tabindex="-1" role="dialog" aria-labelledby="carrinhoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="carrinhoModalLabel">Carrinho de Compras</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Itens no carrinho: <span id="modal-cart-count">0</span></p>
+                        <p>Preço Total: R$ <span id="modal-cart-price">0.00</span></p>
+                        <!-- Adicione outras informações sobre o carrinho aqui -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar
+                            comprando</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Comprar Agora -->
+        <div class="modal fade" id="comprarAgoraModal" tabindex="-1" role="dialog"
+            aria-labelledby="comprarAgoraModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="comprarAgoraModalLabel">Resumo da Compra</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Itens no carrinho: <span id="modal-compra-count">0</span></p>
+                        <p>Preço Total: R$ <span id="modal-compra-price">0.00</span></p>
+                        <!-- Adicione outras informações sobre a compra aqui -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <a type="button" class="btn btn-success btn-success-modal">Confirmar Compra</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="bg-dark text-white text-center py-3 mt-4">
         <!-- Rodapé -->
         <p>© 2023 Loja de Bicicletas</p>
     </footer>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../js/carrinho.js"></script>
+    <script>
+        // Função para adicionar um item ao carrinho e atualizar o contador
+        function adicionarAoCarrinho() {
+            // Aumenta o contador de itens no carrinho
+            var cartCount = document.getElementById('cart-count');
+            var modalCartCount = document.getElementById('modal-cart-count');
+            var modalCartPrice = document.getElementById('modal-cart-price');
+            var modalCompraCount = document.getElementById('modal-compra-count');
+            var modalCompraPrice = document.getElementById('modal-compra-price');
+
+            var count = parseInt(cartCount.textContent);
+            count++;
+
+            cartCount.textContent = count;
+            modalCartCount.textContent = count;
+
+            // Recupera o preço do produto e calcula o preço total
+            var productPrice = parseFloat(document.querySelector('.btn.btn-primary').getAttribute('data-price'));
+            var totalPrice = count * productPrice;
+
+            // Atualiza o preço total no modal de carrinho
+            modalCartPrice.textContent = totalPrice.toFixed(2);
+
+            // Atualiza o preço total no modal de Comprar Agora
+            modalCompraCount.textContent = count;
+            modalCompraPrice.textContent = totalPrice.toFixed(2);
+
+            // Abre o modal de carrinho
+            $('#carrinhoModal').modal('show');
+        }
+
+        // Adiciona um ouvinte de evento ao botão "Adicionar ao Carrinho"
+        document.querySelector('.btn.btn-primary').addEventListener('click', adicionarAoCarrinho);
+
+        // Adiciona um ouvinte de evento ao botão "Comprar Agora"
+        document.querySelector('.btn.btn-success').addEventListener('click', function () {
+            // Abre o modal de Comprar Agora
+            $('#comprarAgoraModal').modal('show');
+        });
+        function exibirModalComprarAgora() {
+            // Recupera os dados do carrinho
+            var modalCartCount = document.getElementById('modal-cart-count').textContent;
+            var modalCartPrice = document.getElementById('modal-cart-price').textContent;
+
+            // Atualiza os dados no modal de Comprar Agora
+            document.getElementById('modal-compra-count').textContent = modalCartCount;
+            document.getElementById('modal-compra-price').textContent = modalCartPrice;
+
+            // Cria os campos do formulário de checkout dinamicamente no modal
+            var checkoutForm = document.createElement('form');
+            checkoutForm.setAttribute('action', 'processar_compra.php');
+            checkoutForm.setAttribute('method', 'POST');
+            checkoutForm.setAttribute('onsubmit', 'return validarForm()');
+
+            var enderecoDiv = criarCampoFormulario('Endereço de Entrega:', 'endereco', 'text', 'form-control', true);
+            var numeroCartaoDiv = criarCampoFormulario('Número do Cartão:', 'numero-cartao', 'number', 'form-control', true);
+            var nomeCartaoDiv = criarCampoFormulario('Nome no Cartão:', 'nome-cartao', 'text', 'form-control', true);
+
+            var dataValidadeDiv = document.createElement('div');
+            dataValidadeDiv.setAttribute('class', 'form-row');
+            dataValidadeDiv.innerHTML = `
+            <div class="form-group col-md-6">
+                <label for="data-validade">Data de Validade:</label>
+                <input type="text" class="form-control" id="data-validade" name="data-validade" placeholder="MM/AA" required = true>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="cvv">CVV:</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required = true>
+            </div>
+        `;
+
+            // Adiciona os campos ao formulário
+            checkoutForm.appendChild(enderecoDiv);
+            checkoutForm.appendChild(numeroCartaoDiv);
+            checkoutForm.appendChild(nomeCartaoDiv);
+            checkoutForm.appendChild(dataValidadeDiv);
+
+            // Adiciona o formulário ao modal
+            document.getElementById('comprarAgoraModal').querySelector('.modal-body').appendChild(checkoutForm);
+            // Adiciona um ouvinte de evento ao botão "Confirmar Compra" dentro do modal de Comprar Agora
+            document.getElementById('comprarAgoraModal').querySelector('.btn.btn-success-modal').addEventListener('click', function () {
+                // Exibe um alerta ao confirmar a compra
+                alert('Pagamento concluído com sucesso.');
+                location.reload();
+            });
+
+            // Abre o modal de Comprar Agora
+            $('#comprarAgoraModal').modal('show');
+        }
+
+        // Função para criar campos do formulário
+        function criarCampoFormulario(labelText, inputId, inputType, inputClass, required) {
+            var div = document.createElement('div');
+            div.setAttribute('class', 'form-group');
+
+            const label = document.createElement('label');
+            label.setAttribute('for', inputId);
+            label.textContent = labelText;
+
+            const input = document.createElement('input');
+            input.setAttribute('type', inputType);
+            input.setAttribute('class', inputClass);
+            input.setAttribute('id', inputId);
+            input.setAttribute('name', inputId);
+            if (required) {
+                input.setAttribute('required', '');
+            }
+
+            div.appendChild(label);
+            div.appendChild(input);
+
+            return div;
+        }
+
+        // Criação do formulário de checkout dinamicamente no modal
+        var checkoutForm = criarCampoFormulario('Endereço de Entrega:', 'endereco', 'text', 'form-control', true);
+        checkoutForm.appendChild(criarCampoFormulario('Número do Cartão:', 'numero-cartao', 'number', 'form-control', true));
+        checkoutForm.appendChild(criarCampoFormulario('Nome no Cartão:', 'nome-cartao', 'text', 'form-control', true));
+
+        var dataValidadeDiv = document.createElement('div');
+        dataValidadeDiv.setAttribute('class', 'form-row');
+        dataValidadeDiv.appendChild(criarCampoFormulario('Data de Validade:', 'data-validade', 'text', 'form-control', true));
+        dataValidadeDiv.appendChild(criarCampoFormulario('CVV:', 'cvv', 'number', 'form-control', true));
+        checkoutForm.appendChild(dataValidadeDiv);
+
+        // Adiciona um ouvinte de evento ao botão "Comprar Agora"
+        document.querySelector('.btn.btn-success').addEventListener('click', exibirModalComprarAgora);
+    </script>
 </body>
 
 </html>

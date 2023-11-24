@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/cart-styles.css">
-
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 20px 0; /* Adicionando um espaço interno ao footer */
+            background-color: #343a40; /* Cor de fundo do footer */
+        }
+    
+        /* Para separar o conteúdo principal do footer */
+        main {
+            margin-bottom: 120px; /* Altura do footer + espaço */
+        }
+    </style>
+    
+    
 </head>
 
 <body>
@@ -90,7 +105,7 @@
         </section>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
         <!-- Rodapé -->
         <p>© 2023 Loja de Bicicletas</p>
     </footer>

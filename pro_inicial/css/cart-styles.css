@@ -20,3 +20,31 @@
     padding: 4px 8px;
     font-size: 12px;
 }
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0; /* Adicionando um espaço interno ao footer */
+    background-color: #343a40; /* Cor de fundo do footer */
+}
+
+/* Separar conteúdo principal do footer */
+body {
+    margin: 0;
+    padding-top: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Ajuste no conteúdo para considerar a altura da barra de navegação fixa */
+main {
+    padding-top: 5px; /* Altura da barra de navegação */
+    padding-bottom: 50px;
+}
